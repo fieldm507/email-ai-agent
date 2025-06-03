@@ -1,7 +1,7 @@
 // pages/_app.tsx
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
-import NavBar from '../components/NavBar'; // ✅ case matches file name
+import Navbar from '../components/Navbar'; // case matches file name
 import '../styles/globals.css';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <NavBar />
+      <Navbar />
       {isHome ? (
         <Component {...pageProps} />
       ) : (
