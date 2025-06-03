@@ -50,8 +50,8 @@ export default function Home() {
           </div>
 
           <p className="text-sm text-purple-400 mt-10 italic">
-            Join the future of automated content. It's weirdly human.
-          </p>
+  Join the future of automated content. It&rsquo;s weirdly human.
+</p>
         </main>
       </div>
     </>
