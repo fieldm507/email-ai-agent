@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { useRouter } from 'next/router';
+import type { User } from '@supabase/supabase-js';
 
 export default function Dashboard() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [briefFile, setBriefFile] = useState<File | null>(null);
   const [emailsFile, setEmailsFile] = useState<File | null>(null);
   const [message, setMessage] = useState('');
@@ -12,10 +13,13 @@ export default function Dashboard() {
   const [generatedEmail, setGeneratedEmail] = useState('');
   const [loading, setLoading] = useState(true);
 
-  // Fetch the logged-in user
   useEffect(() => {
     const getUser = async () => {
       const { data, error } = await supabase.auth.getUser();
+      if (error) {
+        console.error('Error fetching user:', error.message);
+      }
+
       if (data?.user) {
         setUser(data.user);
         setLoading(false);
@@ -27,11 +31,17 @@ export default function Dashboard() {
   }, [router]);
 
   const uploadFile = async (file: File, path: string) => {
+    if (!user) throw new Error('User not logged in');
+
     const { data, error } = await supabase.storage
       .from('uploads')
       .upload(`${user.id}/${path}`, file, { upsert: true });
 
-    if (error) throw error;
+    if (error) {
+      console.error('Error uploading file:', error.message);
+      throw error;
+    }
+
     return data;
   };
 
@@ -53,15 +63,22 @@ export default function Dashboard() {
   };
 
   const handleGenerateEmail = async () => {
+    if (!user) {
+      setMessage('❌ User not found.');
+      return;
+    }
+
     setMessage('Generating email...');
     try {
-      const { data: brief } = await supabase.storage
+      const { data: brief, error: briefError } = await supabase.storage
         .from('uploads')
         .download(`${user.id}/brand-brief.txt`);
+      if (briefError) console.error('Error downloading brand brief:', briefError.message);
 
-      const { data: emails } = await supabase.storage
+      const { data: emails, error: emailsError } = await supabase.storage
         .from('uploads')
         .download(`${user.id}/emails.txt`);
+      if (emailsError) console.error('Error downloading emails:', emailsError.message);
 
       if (!brief || !emails) {
         setMessage('❌ Missing uploaded files.');
@@ -171,11 +188,11 @@ export default function Dashboard() {
 
       {/* Email Output */}
       {generatedEmail && (
-  <div className="mt-6 p-4 border rounded bg-white">
-    <h3 className="text-lg font-semibold mb-2">AI-Generated Email:</h3>
-    <pre className="whitespace-pre-wrap">{generatedEmail}</pre>
-  </div>
-)}
+        <div className="mt-6 p-4 border rounded bg-white">
+          <h3 className="text-lg font-semibold mb-2">AI-Generated Email:</h3>
+          <pre className="whitespace-pre-wrap">{generatedEmail}</pre>
+        </div>
+      )}
     </div>
   );
 }

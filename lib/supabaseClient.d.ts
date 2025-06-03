@@ -1,1 +1,3 @@
-export const supabase: any;
+import { SupabaseClient } from '@supabase/supabase-js';
+
+export const supabase: SupabaseClient;
