@@ -1,7 +1,7 @@
 // pages/_app.tsx
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
-import Navbar from '../components/NavBar';
+import NavBar from '../components/NavBar'; // ✅ case matches file name
 import '../styles/globals.css';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -10,12 +10,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Navbar />
+      <NavBar />
       {isHome ? (
-        // Home page has full-screen freedom
         <Component {...pageProps} />
       ) : (
-        // Other pages get the padded layout
         <main className="min-h-screen bg-gray-100 p-4">
           <Component {...pageProps} />
         </main>
