@@ -22,11 +22,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={`${geistSans.variable} ${geistMono.variable} min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1a1a40] via-[#3f0d7e] to-[#0f172a] text-white px-6`}>
-        <main className="text-center max-w-2xl space-y-8">
+      <div
+        className={`${geistSans.variable} ${geistMono.variable} min-h-screen w-full bg-gradient-to-br from-[#1a1a40] via-[#3f0d7e] to-[#0f172a] text-white flex items-center justify-center`}
+      >
+        <main className="w-full max-w-3xl px-6 text-center flex flex-col items-center justify-center space-y-8 py-24">
           <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight leading-tight">
-            <span className="text-cyan-400">AgentFlow</span> is your
-            <br />
+            <span className="text-cyan-400">AgentFlow</span> is your<br />
             <span className="text-pink-400">AI-powered</span> marketing assistant.
           </h1>
 
@@ -50,8 +51,8 @@ export default function Home() {
           </div>
 
           <p className="text-sm text-purple-400 mt-10 italic">
-  Join the future of automated content. It&rsquo;s weirdly human.
-</p>
+            Join the future of automated content. It&rsquo;s weirdly human.
+          </p>
         </main>
       </div>
     </>
