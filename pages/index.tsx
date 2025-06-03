@@ -25,7 +25,7 @@ export default function Home() {
       <div
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen w-full bg-gradient-to-br from-[#1a1a40] via-[#3f0d7e] to-[#0f172a] text-white flex items-center justify-center`}
       >
-        <main className="w-full max-w-3xl px-6 text-center flex flex-col items-center justify-center space-y-8 py-24">
+        <main className="border-4 border-yellow-400 w-full max-w-3xl px-6 text-center flex flex-col items-center justify-center space-y-8 py-24">
           <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight leading-tight">
             <span className="text-cyan-400">AgentFlow</span> is your<br />
             <span className="text-pink-400">AI-powered</span> marketing assistant.
