@@ -16,40 +16,43 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>AgentFlow – The Future of AI Marketing</title>
-        <meta name="description" content="AI-generated marketing that feels human and converts like crazy." />
+        <title>AgentFlow – The AI Future of Marketing</title>
+        <meta name="description" content="Your voice. Our AI. Infinite leverage." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-gradient-to-br from-indigo-900 via-purple-800 to-black text-white flex flex-col items-center justify-center px-6`}>
-        <main className="text-center space-y-6 max-w-2xl">
-          <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight tracking-tight">
-            The Future of AI Marketing is <span className="text-purple-400">Here</span>.
+      <div className={`${geistSans.variable} ${geistMono.variable} min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1a1a40] via-[#3f0d7e] to-[#0f172a] text-white px-6`}>
+        <main className="text-center max-w-2xl space-y-8">
+          <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+            <span className="text-cyan-400">AgentFlow</span> is your
+            <br />
+            <span className="text-pink-400">AI-powered</span> marketing assistant.
           </h1>
-          <p className="text-lg sm:text-xl text-purple-200 font-medium leading-relaxed">
-            Imagine having an AI that writes <em>just like you</em>… but better. Emails, landing pages, hooks — done in seconds.
+
+          <p className="text-xl sm:text-2xl text-purple-200 leading-relaxed">
+            Write high-converting emails, landing pages, and ad scripts — in seconds. Trained on your voice. Fueled by GPT. Built for marketers.
           </p>
 
-          <div className="mt-6 space-x-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/signup"
-              className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded text-lg transition-all shadow-lg"
+              className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg transition"
             >
               🚀 Start Free Trial
             </Link>
             <Link
               href="/login"
-              className="inline-block text-purple-200 underline text-lg hover:text-white transition"
+              className="text-purple-300 hover:text-white text-lg underline transition"
             >
               I already have an account
             </Link>
           </div>
-        </main>
 
-        <footer className="mt-20 text-xs text-purple-300">
-          &copy; {new Date().getFullYear()} AgentFlow. Built for marketers. Powered by GPT.
-        </footer>
+          <p className="text-sm text-purple-400 mt-10 italic">
+            Join the future of automated content. It's weirdly human.
+          </p>
+        </main>
       </div>
     </>
   );
